@@ -1,0 +1,14 @@
+# Core Jupyter support
+notebook
+nbformat
+
+# Numerical + plotting tools
+numpy
+matplotlib
+
+# 3D visualization support (used in some assignments)
+vpython
+
+# Public helper module (aa_tools)
+git+https://github.com/wdlinch3/aa_tools.git
+

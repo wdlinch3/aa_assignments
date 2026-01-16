@@ -1,0 +1,13 @@
+# Ignore macOS system files
+.DS_Store
+
+# Jupyter/IPython cache
+__pycache__/
+.ipynb_checkpoints/
+
+# VSCode settings (if any)
+.vscode/
+
+# Python cache
+*.pyc
+
