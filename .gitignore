@@ -11,3 +11,7 @@ __pycache__/
 # Python cache
 *.pyc
 
+
+# macOS
+.DS_Store
+**/.DS_Store
