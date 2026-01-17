@@ -1,8 +1,8 @@
-# Advanced Astronomy @ TJHSST — Public Assignments
+# Advanced Astronomy — Public Assignments
 
-This repository contains **public releases** of Jupyter-based homework assignments for the Advanced Astronomy courses at Thomas Jefferson High School for Science and Technology (TJHSST).
+This repository contains **public releases** of Jupyter-based assignments from my Advanced Astronomy project. The goal of this project is to give beginning students in astronomy and astrophysics an opportunity to use professional-grade tools or something as close as possible to that. 
 
-Assignments are released in a form suitable for student download and completion, and are organized by course:
+Assignments are released in a form suitable for student download and completion, and are organized into two courses suitable to a semester format:
 
 - `aa_ss/` — *Advanced Astronomy: Solar System*
 - `aa_u/` — *Advanced Astronomy: Universe*
@@ -12,9 +12,6 @@ Each assignment appears in its own folder and includes:
 - A Jupyter notebook (`.ipynb`) containing instructions, problems, and code cells.
 - Any necessary images or supporting files.
 - No solutions, test code, or instructor metadata.
-
-> 📁 Example:
-> `aa_ss/ss_aristarchus/` contains `ss_aristarchus.ipynb` and a folder of images used in the assignment.
 
 ---
 
@@ -35,7 +32,7 @@ To work on an assignment:
 2. Open the notebook inside Jupyter (via JupyterHub or JupyterLab).
 3. Run the cells and complete the work as directed in the notebook.
 
-🚫 **Do not delete or move the `Images/` folder**, or any of the included files. Doing so may break image links and other resources in the notebook.
+**Do not delete or move the `Images/` folder**, or any of the included files. Doing so may break image links and other resources in the notebook.
 
 ---
 
@@ -70,16 +67,5 @@ Where `<course_prefix>` is one of:
 - `u` = Universe
 - `x` = Shared topics
 
----
-
-## License
-
-This material is distributed for educational use only within the TJHSST community. If you are an educator and would like to use or adapt these assignments, please feel free to reach out.
-
----
-
-## Questions?
-
-If you're a TJHSST student and have questions about an assignment, please contact your instructor through the usual channels (Schoology or email).
 
 
