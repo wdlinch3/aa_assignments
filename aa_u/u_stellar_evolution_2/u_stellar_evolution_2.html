@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11.1: Stellar Evolution II</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="u_stellar_evolution_2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="u_stellar_evolution_2_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="u_stellar_evolution_2_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="u_stellar_evolution_2_files/libs/quarto-html/popper.min.js"></script>
+<script src="u_stellar_evolution_2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="u_stellar_evolution_2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="u_stellar_evolution_2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="u_stellar_evolution_2_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="u_stellar_evolution_2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="u_stellar_evolution_2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="u_stellar_evolution_2_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">11.1: Stellar Evolution II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous packet, we investigated the fate of an isolated <em>solar-mass star</em> as it evolved off the main sequence. As hydrogen became less abundant, helium accumulated in the core. Gravitational contraction and the increased speed of hydrogen-shell burning resulted in larger core temperatures inflating the star as it climbed the red giant branch.</p>
+<p>Once the core temperature reached <span class="math inline">\(\sim 10^8\)</span> <code>K</code> <span class="math inline">\(=100\)</span> <code>MK</code>, helium fusion began. However, by then the core was in a degenerate state in which the pressure was only weakly dependent on the temperature. This resulted in a brief helium flash of only a few hours followed by a short 10,000-year period during which the red giant regains hydrostatic equilibrium.</p>
+<p>Once equilibrium is regained, the giant remains on the horizontal branch, stably fusing helium into carbon in the core by the <strong>triple-alpha process</strong>. At these temperatures (<span class="math inline">\(\sim 2\times 10^8\)</span> <code>K</code> <span class="math inline">\(=200\)</span> <code>MK</code>), carbon and helium can synthesize oxygen, but it is still not hot enough for carbon-carbon fusion (<span class="math inline">\(\sim 5\times 10^8\)</span> <code>K</code> <span class="math inline">\(=500\)</span> <code>MK</code>), so the burn-out process repeats, and the star ascends the asymptotic giant branch.</p>
+<p>The extreme temperature-sensitivity of the triple-alpha process (problem 19 in previous packet) causes the core of the star to become increasingly unstable even as the star has grown to <span class="math inline">\(500 R_\odot\)</span>. As the dying star convulses repeatedly over the span of ten millennia, a large fraction of all the material of the star is flung outward at higher than escape speed, resulting in a planetary nebula with a carbon-oxygen white dwarf at its center.</p>
+<p>In this packet, we will explore the variations of this evolution that result from significant differences in mass and/or not being isolated.</p>
+<section id="brown-dwarfs-m0.07-m_odot" class="level1">
+<h1>Brown Dwarfs (<span class="math inline">\(M&lt;0.07 M_\odot\)</span>)</h1>
+<p>Extremely low-mass <span class="math inline">\(M&lt;0.07 M_\odot\)</span> protostars never reach the hydrogen ignition temperatures in their core.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 1</strong></p>
+<p>Convert this bound to Jupiter masses <span class="math inline">\(M_J=2\times 10^{27}\)</span> <code>kg</code> and comment on how far off the claim “Jupiter is a failed star” is. Jupiter’s core temperature is <span class="math inline">\(\sim 24{,}500\)</span> <code>K</code>. Where is this heat coming from?</p>
+</blockquote>
+<div id="2dcdff17-9d0f-4cae-907f-8a9d3e3d2f79" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1ed87697e7dad0c6fbcae9b63bc63ace&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-a503daa8d470e39e&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>Recall that we previously estimated the gravitational energy of an object of size <span class="math inline">\(R\)</span> assembled from disparate tiny parts of total mass <span class="math inline">\(M\)</span> to be <span class="math inline">\(U\sim G\frac{M^2}R\)</span>. We then used this to estimate the pressure <span class="math inline">\(P\sim U/V\)</span> where <span class="math inline">\(V=\frac{4}{3}\pi R^3\)</span> is the volume of the object. Finally, we related this to the temperature of an ideal gas through the ideal gas law <span class="math inline">\(PV=Nk_BT\)</span>.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 2</strong></p>
+<p>Reassemble all the pieces above to derive an estimate for the temperature of such an astrophysical object by following the steps:</p>
+<ol type="a">
+<li>First, show that <span class="math display">\[T= \frac{GM^2}{k_BNR}\]</span></li>
+<li>Assume the bulk of the mass is made up of nucleons (protons and neutrons). Argue that in this case <span class="math inline">\(M=Nm_p\)</span>, and use this to show that <span class="math display">\[T= \frac{GMm_p}{k_BR} \quad (1)\]</span></li>
+<li>A typical brown dwarf has a radius <span class="math inline">\(\sim20\%\)</span> larger than that of Jupiter. Use this and the radius <span class="math inline">\(R_{\mathrm{Jupiter}}\sim 7\times 10^7\)</span> <code>m</code> of Jupiter, to estimate the temperature in the core of a brown dwarf. Is this enough to initiate hydrogen fusion?</li>
+</ol>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<div id="c5693570-5887-4ea6-a729-65b9625a09dc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ddbdda9088da76995e7dad911d72796c&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-1fc3f1b8601c79a6&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>These “failed stars” follow the same physics as those in the Kelvin-Helmholtz contraction phase and on the Hayashi track, but miss the main sequence (off to the bottom-right on the H-R diagram) as they fail to reach the <span class="math inline">\(1.5\times 10^7\ \mathrm{K}\)</span> required for hydrogen fusion.</p>
+</section>
+<section id="low-mass-stars-0.08-m_odotm0.6-m_odot" class="level1">
+<h1>Low-mass Stars (<span class="math inline">\(0.08 M_\odot&lt;M&lt;0.6 M_\odot\)</span>)</h1>
+<p>When a protostar has a mass above <span class="math inline">\(\sim 0.08 M_\odot=80 M_J\)</span>, gravitational collapse will give rise to a sufficiently high core temperature to eventually trigger hydrogen fusion, thereby qualifying it as an honest star called a <strong>red dwarf</strong>. When such a star has a mass <span class="math inline">\(M &lt;0.6 M_\odot\)</span>, it will fuse hydrogen, but does not reach the <span class="math inline">\(T \sim 100\)</span> <code>MK</code> required to fuse helium (cf.&nbsp;problem 10.f.ii of previous packet). Furthermore, it does not develop a radiative core as the Sun does, remaining fully convective throughout its lifetime. Because of this, <em>it can use up close to all of its hydrogen</em>.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 3</strong></p>
+<p>We will now estimate the lifetime of a typical red dwarf.</p>
+<ol type="a">
+<li><p>Assume such a star has a mass <span class="math inline">\(M_{rd}=0.6 M_\odot\)</span>. Show that this corresponds to <span class="math inline">\(N=7\times 10^{56}\)</span> nucleons.</p></li>
+<li><p>In previous work, we discussed the main hydrogen fusion branch <span class="math display">\[4 {}^1H+2e^-\to {}^4He+2\nu_e\]</span> releasing 27 MeV of energy. Use this to show that the energy released per nucleon is <span class="math inline">\(\Delta E\sim 1\times 10^{-12} J\)</span>.</p></li>
+<li><p>Combine the two results above to show that if 100% of the available hydrogen is fused, the total energy radiated is <span class="math inline">\(E\sim 8\times 10^{44} J\)</span>.</p></li>
+<li><p>A typical red dwarf has a luminosity of <span class="math inline">\(L_{rd}=0.07 L_\odot=2.7\times 10^{25} W\)</span>. Use this to show that its estimated lifetime is <span class="math inline">\(\sim 9\times 10^{11}\ yr\)</span>, or roughly a trillion years.</p></li>
+</ol>
+</blockquote>
+<div id="3ac68606-5dc7-4b68-9312-ee90bdb0ee27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1b503e2a0e9f38347bad23486bb0435b&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-c46f97d0baf5563e&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>By comparison, the age of the universe is estimated to be only <span class="math inline">\(1.4\times 10^{10}\)</span> <code>yr</code>, roughly 14 billion years. Just as with black dwarfs, such burnt-out red dwarfs are not expected to have had enough time to come into existence yet.</p>
+</section>
+<section id="intermediate-mass-stars-0.6-m_odotm9-m_odot" class="level1">
+<h1>Intermediate-mass Stars (<span class="math inline">\(0.6 M_\odot&lt;M&lt;9 M_\odot\)</span>)</h1>
+<p>We have already discussed solar-mass stars in great detail in the previous packet. However, for stellar masses slightly larger than that of the Sun (<span class="math inline">\(\gtrsim 1.3 M_\odot\)</span>), a different hydrogen fusion process is favored over the usual proton-proton chain. This process is called the CNO-cycle.</p>
+<p>Suppose that there is <span class="math inline">\({}^{12}_{~~6}C\)</span> present in the stellar core. Such a nucleus can capture a proton in the process <span class="math display">\[{}_{~~6}^{12}C+p\to {}_{~~7}^{13}N+\gamma\]</span></p>
+<p><span class="math inline">\({}_{~~7}^{13}N\)</span> is unstable to beta-decay, so the next step is <span class="math display">\[{}_{~~7}^{13}N \to {}_{~~6}^{13}C + e^+ + \nu_e\]</span> The carbon-13 nuclide (nuclear isotope) can capture another proton to make nitrogen-14 <span class="math display">\[{}_{~~6}^{13}C+p\to {}_{~~7}^{14}N+\gamma\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Problem 4</strong></p>
+<p>Repeat the steps of this CN-process with <span class="math inline">\({}_{~~6}^{12}C\)</span> replaced by <span class="math inline">\({}_{~~7}^{14}N\)</span>. You will have to figure out what to replace N with.</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<p>In the last step, you should have written something down like <span class="math inline">\({}_{~~7}^{15}N+p\to{}_{~~8}^{16}O+\gamma\)</span>. This is indeed what happens in the so-called CNO-II cycle, but it only occurs 0.04% of the time. The by far more favored process drops back down to carbon-12 <span class="math display">\[{}_{~~7}^{15}N+p \to {}_{~~6}^{12}C + {}_2^4He\]</span> which takes us back to our starting point. It is called the CNO-I cycle. It is catalytic in the sense that it does not use up any carbon, nitrogen, or oxygen in the process.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 5</strong></p>
+<p>Write a reaction similar to those above for one CNO-I cycle. It should look like <span class="math display">\[{}_{~~6}^{12}C+\# p +\#e \to{}_{~~6}^{12}C + {}_2^4He+\#\nu_e +\#\gamma\]</span> for various values of #. Use this to estimate the energy released per proton by the CNO cycle. (Hint: Remember that the masses of the electrons, neutrinos, and photons can be ignored relative to those of the other reactants.)</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/CNO.png" class="img-fluid figure-img"></p>
+<figcaption>CNO.png</figcaption>
+</figure>
+</div>
+<p>An important difference between the p-p chain and the <a href="https://en.wikipedia.org/wiki/CNO_cycle"><strong>CNO cycle</strong></a> is the temperature dependence of the rate of reaction. You may recall from our treatment of the triple-alpha process that the rate was proportional to <span class="math inline">\(T^{40}\)</span> resulting in insanely high sensitivity to small changes in the temperature. As you can see from the figure below, the CNO cycle has a similarly-large sensitivity to temperature. Notice that this is a log-log plot, which is what you use for fitting functions that grow as powers. In this case, what is being plotted is roughly speaking the log of the power/luminosity as a function of the log of the temperature. This is what you would do if the relation is something like <span class="math inline">\(L \sim T^\#\)</span> for some power #.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ppCNO.png" class="img-fluid figure-img"></p>
+<figcaption>ppCNO.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Problem 6</strong></p>
+<p>Use the figure to verify that the temperature dependence of the triple-alpha process scales like <span class="math inline">\(T^{40}\)</span>. Calculate the analogous temperature dependences for the pp-chain and the CNO cycle at the point where the two lines cross. Does the answer for the pp-chain look familiar?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<p>The stronger temperature dependence of the more massive stars results in an inversion of their structure relative to solar-mass stars: The non-uniformity of the temperature results in a <em>convective zone</em> immediately outside the fusing core rather than a radiative zone as was the case for solar-mass stars.</p>
+<p>The upper end of the mass range of about <span class="math inline">\(9 M_\odot\)</span> for this type of star is determined by the criterion that such stars do not fuse carbon in their core. The remainder of their evolution is precisely the one we explored in the previous packet and reviewed in the introduction above. The final result is a planetary nebula with a white-dwarf remnant at its center: typically a carbon-oxygen white dwarf for progenitors with roughly <span class="math inline">\(0.6M_\odot&lt;M\lesssim 7M_\odot\)</span>, or an oxygen-neon white dwarf for progenitors with roughly <span class="math inline">\(7M_\odot\lesssim M&lt;9M_\odot\)</span>. The white dwarf is supported by electron degeneracy pressure. As we will discuss below, there is a limit to how large the mass of the core may be before electron degeneracy pressure is insufficient to support it. This mass, called the <a href="https://en.wikipedia.org/wiki/Chandrasekhar_limit"><strong>Chandrasekhar mass</strong></a> is given by <span class="math display">\[
+M_{Ch}=1.4 M_\odot \quad (2)
+\]</span> We emphasize that this is a limit on the mass of the <em>core</em> of the original star, not the mass of the whole star that we started with. Consequently, it is also a limit on the mass of the white dwarf stars that these cores become.</p>
+<p>We will now move on to a different evolution in more massive stars.</p>
+</section>
+<section id="high-mass-stars-9-m_odotm" class="level1">
+<h1>High-mass Stars (<span class="math inline">\(9 M_\odot&lt;M\)</span>)</h1>
+<p>Stars with masses above <span class="math inline">\(\sim 9 M_\odot\)</span> can fuse carbon. In such high-mass stars, the core is hotter than in the lower-mass versions, so helium fusion begins <em>before the core becomes degenerate</em>. This has a major effect on the evolution of the star, because the cross-over from hydrogen burning to helium fusion is a smooth one, and there is no helium flash. Furthermore, at a temperature of <span class="math inline">\(\sim 6\times 10^8\ \mathrm{K}\)</span>, the carbon fusion will begin smoothly as well.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 7</strong></p>
+<p>Consider the fusion of two carbon nuclei <span class="math inline">\({}_{~~6}^{12}C\)</span> to form some heavier element <span class="math inline">\({}_Z^AX\)</span>. If only this one element (and perhaps some photons) result from this fusion, what is this element? Consider now fusion reactions of the form <span class="math display">\[{}_{~~6}^{12}C+{}_{~~6}^{12}C\to {}_Z^AX+x_1{}_2^4He+x_2p+x_3n +\gamma\]</span> Here, <span class="math inline">\(x_1\)</span> is some number of alpha particles (nuclei of <span class="math inline">\({}_2^4He\)</span>), <span class="math inline">\(x_2\)</span> is some number of protons, <span class="math inline">\(x_3\)</span> is some number of neutrons and <span class="math inline">\(\gamma\)</span> stands for any number of photons. The case you just considered is the one where <span class="math inline">\(x_1=x_2=x_3=0\)</span>. By conserving atomic mass number <span class="math inline">\(A\)</span> and charge (= number of protons) <span class="math inline">\(Z\)</span>, find all the different possible elements <span class="math inline">\(X\)</span>. Restrict your search to the case where <span class="math inline">\(x_1+x_2+x_3\leq2\)</span>, that is, besides <span class="math inline">\(X\)</span>, there are at most two other nuclear particles.</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<div id="a0a24468-464e-4fda-8913-9ec749b8255c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;f2069fd9f0ffd519ba7a38d219607fc6&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-1a1c3f70e719ae5c&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>The result of the carbon fusion process on the RHS is called a <strong>final state</strong>. There are many final states that do not happen for various reasons. For example, the resulting element <span class="math inline">\(X\)</span> may be unstable, as is the case for <span class="math inline">\({}_{11}^{A}Na\)</span> for any value of <span class="math inline">\(A\)</span> other than <span class="math inline">\(A=23\)</span>. Another typical reason is that <span class="math inline">\({}_2^4He\)</span> is a by far more energetically-favorable configuration than 2 loose protons and two loose neutrons. To see this, recall that the mass of 4 loose protons and neutrons is larger than the mass of one helium nucleus by an amount equivalent to about 28 MeV of energy (cf.&nbsp;problem 12.b of the previous packet).</p>
+<p>This difference in mass is accounted for by the energy that it takes to hold the nucleons together in the nucleus. A high <strong>binding energy</strong> corresponds to a very tightly bound nucleus, and a tightly bound nucleus is more stable than a loosely bound one. To compare nuclei of different sizes (for example, to determine which are more tightly bound), it is useful to divide the binding energy by the number of nucleons, that is, we consider the binding energy per nucleon. The figure below shows the binding energy per nucleon in MeV for most of the elements in the periodic table. A free proton has no binding energy (because it is free) and it has atomic number <span class="math inline">\(A=Z=1\)</span>, so it appears in the lower-left corner of the diagram.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bindingE.png" class="img-fluid figure-img"></p>
+<figcaption>bindingE.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Problem 8</strong></p>
+<p>Locate the alpha particle in the graph. What is the binding energy of this particle? How does this number compare with what you know about the fusion process that creates it from protons and neutrons?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<blockquote class="blockquote">
+<p><strong>Problem 9</strong></p>
+<p>In problem 12a of the previous packet, you should have found that the PEP process has <span class="math inline">\(\Delta E=2.2\)</span> <code>MeV</code>. How does this compare with the amount of energy implied by the figure?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<blockquote class="blockquote">
+<p><strong>Problem 10</strong></p>
+<p>What is the most stable element labeled explicitly in the figure?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<blockquote class="blockquote">
+<p><strong>Problem 11</strong></p>
+<p>Some elements are noticeably more stable than their immediate neighbors. These elements all have something in common. By scrutinizing their atomic numbers, figure out what distinguishes these elements from the others. Continue the pattern beyond the first three elements. Do you recognize the elements that you get?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<p>Previously, we touched on stellar nucleosynthesis; the process whereby elements heavier than hydrogen and helium are created in stellar interiors. If this is really the origin of such “heavy elements” then we should see more of those elements that are created in the most prevalent processes. Since the alpha-ladder is such a process, we expect that elements with an even number of protons are more abundant than those with an odd number. This is called the <a href="https://en.wikipedia.org/wiki/Oddo–Harkins_rule"><strong>Oddo-Harkins rule</strong></a>. We will return to the observed <a href="https://en.wikipedia.org/wiki/Abundance_of_the_chemical_elements"><strong>elemental abundances</strong></a> after we have considered more massive stars, but the spoiler is that they are in detailed agreement with those implied by models of stellar nucleosynthesis. This is why many astronomers like to say that we are literally made out of stardust.</p>
+<section id="silicon-burning" class="level2">
+<h2 class="anchored" data-anchor-id="silicon-burning">Silicon burning</h2>
+<p>In problem 10, you should have noted that the most stable element labeled in the graph is <span class="math inline">\({}_{26}^{56}Fe\)</span>. At temperatures <span class="math inline">\(\sim 6\times 10^8\ \mathrm{K}=600\)</span> <code>MK</code>, oxygen results from the carbon fusion process <span class="math display">\[{}_{~~6}^{12}C+{}_{~~6}^{12}C \to {}_{~~8}^{16}O+2{}_2^4He\]</span> as you discovered in problem 7. At temperatures <span class="math inline">\(\sim 10^9\ \mathrm{K}=1\)</span> <code>GK</code> this oxygen begins to fuse. Although we will not have another exercise about it, you could in principle repeat exercise 7 for oxygen fusion. In the process, you would find that silicon is formed in the alpha-process <span class="math display">\[{}_{~~8}^{16}O+{}_{~~8}^{16}O\to {}_{14}^{28}Si+{}_2^4He\]</span> Finally, when <span class="math inline">\(T_{\mathrm{core}}\sim 3\)</span> <code>GK</code>, silicon participates in a sequence of photodisintegration and <strong>α-capture</strong> reactions called the <strong>silicon burning process</strong> <span class="math display">\[{}_{14}^{28}Si \leftrightarrow {}_{16}^{32}S\leftrightarrow {}_{18}^{36}Ar\leftrightarrow ...\leftrightarrow {}_{28}^{56}Ni\]</span></p>
+<p>to produce a host of nuclei near the peak of the nuclear binding energy graph. (In each step we are either capturing an alpha particle and moving to the right, or emitting one and moving left.) The most abundant of these are iron-54, iron-56, and nickel-56. In astronomy terms, when referring to the core of a star, these are colloquially grouped together and referred to as an “iron core”. At mass number 56, we are at the peak, so further fusion into heavier elements would <em>require</em> energy, not produce it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/abundances.png" class="img-fluid figure-img"></p>
+<figcaption>abundances.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Problem 12</strong></p>
+<p>Here on Earth, nuclear reactors work by fission: Instead of fusing lightly bound nuclei into more tightly bound ones, we break up more lightly bound nuclei into parts that are more tightly bound. Use the nuclear binding curve to estimate the energy per nucleon released in the fission process <span class="math inline">\({}_{~92}^{235}U+n \to {}_{~56}^{141}Ba+ {}_{36}^{92}Kr+3 n\)</span>. (For comparison, recall from problem 8 that the proton-proton chain releases ~ 7 MeV per nucleon.)</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<p>The geometry of the star consists of the iron core with a silicon-burning shell, which is surrounded by an oxygen-burning shell, surrounded by a carbon-burning shell, surrounded by a helium-burning shell, surrounded by a hydrogen-burning shell. Above that is a convective layer churning up elements from the core and bringing them to the surface layers in a series of processes referred to as <a href="https://en.wikipedia.org/wiki/Dredge-up"><strong>dredge-ups</strong></a>.</p>
+<p>At this point the temperature in the core is around <span class="math inline">\(3\times 10^9\ \mathrm{K}=3\)</span> <code>GK</code>. Recall that previously, every stage in the core/shell-burning cycle proceeded faster than the previous stage. This continues to be true for the fusion reactions leading to the iron core; the rate increases dramatically. Although we will discuss the fate of a <span class="math inline">\(20 M_\odot\)</span>-mass star later, the rates of nuclear burning for such a star are</p>
+<ul>
+<li>hydrogen (main sequence): 10 million years</li>
+<li>helium: 1 million years</li>
+<li>carbon: 300 years</li>
+<li>oxygen: 200 days</li>
+<li>silicon: 2 days</li>
+</ul>
+<p>As a final comment: Note that the silicon-burning process is very different from the other fusion processes. Instead of creating iron in a Si-Si fusion reaction, it builds up to the iron elements step-wise. This is possible, in part, due to photodisintegration:</p>
+<blockquote class="blockquote">
+<p><strong>Problem 13</strong></p>
+<p>Helium can be formed by fusing two protons and two neutrons in the exothermic process <span class="math inline">\(2p+2n\to {}_2^4He+\gamma\)</span>. By the rules of particle physics, this means that we could also break apart an alpha particle by hitting it with an energetic photon: <span class="math inline">\({}_2^4He+\gamma\to 2p+2n\)</span>. Calculate the energy of the photon required for this photodisintegration process. To what temperature does this correspond?</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<div id="2d9860fb-4f71-4ead-b368-5c41933d3de6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;24782a9420ec564edd3e0e8c56fdd6d0&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-fcd1f95f77e52d84&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+</section>
+<section id="core-collapse" class="level2">
+<h2 class="anchored" data-anchor-id="core-collapse">Core collapse</h2>
+<p>The star has now truly run out of fuel: The core is now made of iron, and any additional fusion (or fission, for that matter) <em>requires</em> energy instead of generating any, so things are about to go spectacularly wrong. Within roughly one second, multiple processes contribute to the catastrophic collapse of the core:</p>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Photodisintegration"><strong>photodisintegration</strong></a>: As alluded to in question 13, the photons in the core are sufficiently energetic that they can destroy the heavy elements in the nucleus, thereby undoing <em>in an instant</em> all but a trace amount of nucleosynthesis the star has produced over a span of billions of years. The most important of these processes are <span class="math display">\[{}_{26}^{56}Fe+\gamma\to 13 {}_2^4He+4n\]</span> <span class="math display">\[{}_2^4He+\gamma\to 2p+2n\]</span> These processes are <em>highly</em> endothermic, since they absorb exactly as much energy as the entire formation processes produced. Thus, such processes rob the core of enormous amounts of energy just as the core is already imploding from lack of pressure.</p></li>
+<li><p>Electron degeneracy pressure (cf.&nbsp;problem 8 in Evolution I) is insufficient to support the core, and electrons get squeezed into the nucleus thereby undergoing the opposite of beta-decay called <strong>neutronization</strong> or <a href="https://en.wikipedia.org/wiki/Electron_capture"><strong>electron capture</strong></a>: <span class="math display">\[p+e^-\to n+\nu_e\quad(3)\]</span> Again, this process is endothermic, and it is happening to as many protons as are available (estimated previously in problem 3a). The escaping <em>neutrinos</em> carry away <span class="math inline">\(3\times10^{38}\)</span> <code>J</code> every second. For comparison, the luminosity of a <span class="math inline">\(20M_\odot\)</span> star is “merely” <span class="math inline">\(4\times 10^{31}\)</span> <code>W</code> or 7 dex smaller! (If this is not shocking to you, let me remind you that we are talking about <em>neutrinos</em>.)</p></li>
+<li><p>Having broken through the electron degeneracy pressure barrier, the core begins a rapid gravitational collapse. The inner core contracts roughly homologously, while the outer core falls inward ever faster and eventually becomes supersonic. At some radius, the infall speed exceeds the local speed of sound, and the collapsing inner core dynamically separates from the outer layers that are in near-free-fall. The core continues this implosion until it has reached a density of <span class="math inline">\(\sim 8\times 10^{14}\)</span> <code>g/cm**3</code>, a number 3 times higher than the density of nuclear matter. At this point, <strong>neutron degeneracy pressure</strong> takes over in complete analogy with electron degeneracy. Provided the neutron degeneracy pressure suffices to halt the collapse, the core rebounds, producing a shock wave that propagates back out, racing to meet the infalling envelope.</p></li>
+<li><p>If the core is not too massive, the shock blows through the envelope in a “prompt hydrodynamic explosion”. If the core is more massive, the shock wave will stall as the infalling envelope hits it and begins to pile material onto the shock front. Just as this <strong>accretion shock</strong> is about to collapse under the immense pressure of the infalling material, the neutrino wave comes to the rescue. Although neutrinos usually pass through even the densest material unmolested, the material in the accretion shock is so dense that 5% of the enormous energy carried by the neutrinos is deposited. Reinvigorated, the shock + neutrino wave regains the upper hand by this “delayed explosion mechanism”.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Problem 14</strong></p>
+<p>Confirm that the density of nuclear matter is on the order of <span class="math inline">\(10^{14}\)</span> <code>g/cm^3</code> by dividing the mass of the proton by its volume. Hint: Recall it has a size of <span class="math inline">\(\sim10^{-15}\)</span> <code>m</code>.</p>
+</blockquote>
+<div id="de663a56-0a3d-4026-9789-74627b3adfa7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;322537d3ec18ce5b20fa143fedea208e&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-daabe2a45eec9946&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>This series of events is called a <strong>core-collapse supernova</strong>. Most of the mass of the star is ejected into space. Through the immensely violent explosion, many heavy elements are created in supernova nucleosynthesis. Let us investigate what remains of the core.</p>
+<p>The core rebounded due to the neutron degeneracy pressure, which is completely analogous to electron degeneracy pressure. Let us find an estimate for the maximum mass that this can support. The gravitational pressure is still <span class="math inline">\(P\sim G\rho^2 R^2\)</span> as we estimated from the potential energy/volume. It is tempting to take the formula for the electron degeneracy pressure <span class="math inline">\(P\sim \frac{h^2}{2m_e}n^{5/3}\)</span> and just replace the electron mass <span class="math inline">\(m_e\to m_n\)</span> with the neutron mass. This would be the correct thing to do if we could ignore relativity (which we implicitly did in the case of degenerate electrons), but we should not.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 15</strong></p>
+<p>When we derived the formula for the electron degeneracy pressure, we used the formula <span class="math inline">\(E_1=\frac{p^2}{2m_e}\)</span> for the kinetic energy of a single electron in terms of its momentum <span class="math inline">\(p\)</span>. This is the Newtonian formula for kinetic energy. The relativistic version of this is <span class="math inline">\(E_1=pc\)</span> where <span class="math inline">\(c\)</span> is the speed of light in vacuum.<br>
+a. Verify that the relativistic form has the same units as the non-relativistic form.<br>
+b. Go back to the previous packet and confirm that for a single particle, we previously replaced <span class="math inline">\(p=hn^{1/3}\)</span> where <span class="math inline">\(n=\frac{N}{V}\)</span> is the number density. Use this to derive a new formula <span class="math display">\[P_N= h c n^{4/3}\tag{4}\]</span> for the relativistic degeneracy pressure of N identical fermions.<br>
+c.&nbsp;Equate this to the gravitational pressure to get <span class="math inline">\(G\rho^2R^2 \sim hc n^{4/3}\)</span>. Again, we have that the mass density and the number density are related by the mass of the particles, which are mostly neutrons, so <span class="math inline">\(\rho=m_n n\approx m_p n\)</span>. Show that this allows us to rewrite the equation we obtained as <span class="math display">\[\rho^{2/3}R^2=\frac{hc}{G} \left(\frac{1}{m_p}\right)^{4/3}\tag{5}\]</span> d.&nbsp;Show that the LHS of this equation reduces to <span class="math inline">\(\rho^{2/3}R^2\sim M^{2/3}\)</span> up to some numerical prefactor <span class="math inline">\(\sim 1\)</span>.<br>
+e. Show that the combination <span class="math display">\[M_{Pl}=\sqrt{\frac{\hbar c}{G}}\tag{6}\]</span> has the units of mass. (Here <span class="math inline">\(\hbar=\frac{h}{2\pi}\)</span> is the reduced Planck constant.) Calculate the value of this so-called <a href="https://en.wikipedia.org/wiki/Planck_units">Planck mass</a>.<br>
+f.&nbsp;We have been cavalier with various factors like <span class="math inline">\(\frac{4}{3}\)</span> for the volume. Show from equation (4) that, up to such factors, <span class="math display">\[M \sim \frac{M_{Pl}^3}{m_p^2}\tag{5*}\]</span> g. Calculate the numerical value to show that <span class="math inline">\(M=1.8 M_\odot\)</span> and compare this to the Chandrasekhar mass (eq. 2).</p>
+</blockquote>
+<p>YOUR ANSWER HERE</p>
+<div id="4883542e-2b56-4075-bd38-b96586d482a9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;dbbde24d8cea0662633c92912dc93585&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-e1b892bd861ea85f&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>YOUR ANSWER HERE</p>
+<div id="13ae0593-248a-48fa-83fc-c12479031e02" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;bc07c625c286fd5181ad3bfa966e9a26&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-d7a35eded18bffc4&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<p>In this exercise, we have calculated a rough estimate for the value of the mass of a star that can be supported by neutron degeneracy pressure. It is the neutron degeneracy pressure analog of the <a href="https://en.wikipedia.org/wiki/Chandrasekhar_limit">Chandrasekhar limit</a> (2) which gave the upper limit for white dwarf masses. This limit on the mass of a neutron star is called the <a href="https://en.wikipedia.org/wiki/Tolman–Oppenheimer–Volkoff_limit"><strong>TOV-limit</strong></a> after Tolman, Oppenheimer, and Volkoff. A careful calculation shows that <span class="math display">\[M_{TOV}=3M_\odot\quad(7)\]</span> so our rough estimate was not far off. Note that this mass refers to the mass of the <em>core</em> of the star which is much less than the mass of the star we started with.</p>
+</section>
+<section id="very-high-mass-stars-12-m_odotm" class="level2">
+<h2 class="anchored" data-anchor-id="very-high-mass-stars-12-m_odotm">Very High-mass Stars (<span class="math inline">\(12 M_\odot&lt;M\)</span>)</h2>
+<p>When we exceed the Tolman–Oppenheimer–Volkoff limit for neutron stars, the relativistic neutron degeneracy pressure is insufficient to support the collapsing matter. At this point we have tried to balance gravity with thermal, electromagnetic, and nuclear forces, and we have failed to do so with all of them. Gravity wins, and the core collapses all the way down to a point. This is a point of infinite mass density, an object we call a singularity.</p>
+<p>Recall that the escape speed from an object of mass <span class="math inline">\(M\)</span> and radius <span class="math inline">\(R\)</span> is given by <span class="math inline">\(v=\sqrt{\frac{2GM}{R}}\)</span>. When the ratio <span class="math inline">\(\frac MR\)</span> becomes large, <span class="math inline">\(v\to c\)</span> approaches the speed of light. This means that if all the mass of a star is contained within the <strong>Schwarzschild radius</strong> <span class="math display">\[R_S=\frac{2GM}{c^2}\quad(8)\]</span> then light cannot escape from its surface. If light cannot escape, nothing can. This includes pressure waves needed to support a material, so nothing can be supported if it is compacted to within its Schwarzschild radius.</p>
+<p>Thus, a singularity is surrounded by an imaginary sphere of radius <span class="math inline">\(R_S\)</span> with the property that anything that enters this sphere will not come out no matter what. This imaginary surface is called the event horizon. Since light can also not come out, the object looks like a dark hole in space, ergo a black hole.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 16</strong></p>
+<p>Calculate the Schwarzschild radius for the Sun, a white dwarf, a neutron star, and a small black hole. What does this say about the sizes of the first three?</p>
+</blockquote>
+<div id="d31315bf-2baa-437b-8db4-b341d2a7ca9e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;19f0c9ec7f0092c82e3dbc0a3f2c8b43&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-23a3e3d2a62be9a8&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">NotImplementedError</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>()
+
+<span class="ansi-red-fg">NotImplementedError</span>: </pre>
+</div>
+</div>
+</div>
+<div id="aa3620d3-c3b6-4ac0-890f-445d351e3224" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> aa_tools.astroc <span class="im">import</span> R_sun</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Recall that the size of the core was around R_sun/100 ~"</span>,<span class="bu">round</span>(R_sun<span class="op">/</span><span class="dv">100</span><span class="op">/</span><span class="dv">1000</span>),<span class="st">"km...</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Recall that the size of the core was around R_sun/100 ~ 7000 km...
+</code></pre>
+</div>
+</div>
+<p>… so the radii of the Sun and white dwarf are far larger than their Schwarzschild radii. Since their mass has not been squeezed to within their Schwarzschild radius, they do not collapse to black holes.</p>
+<p>The neutron star typically has a radius of … Actually, instead of looking this up, let’s estimate it with everything we know from problems 14 and 15: We want to know the radius of a neutron star, and we know that it has a mass density on the order of that of nuclear matter because it is held up by neutron degeneracy pressure. We previously estimated this density in problem 14 to be <span class="math inline">\(\rho=4.1\times 10^{17}\ \mathrm{kg}/\mathrm{m}^3\)</span>. We also calculated that the mass of a neutron star was <span class="math inline">\(M\sim 2M_\odot\)</span> in problem 15g. From this, the volume <span class="math inline">\(V=\frac{M}{\rho}=\frac{4}{3} \pi R^3\)</span>. Solving for <span class="math inline">\(R=\sqrt[3]{\frac{3M}{4\pi\rho}}\)</span>. Plugging in the numbers:</p>
+<div id="ee47efc7-8eca-4f88-8971-6a1eaea6fd2e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> aa_tools.astroc <span class="im">import</span> r_mass_density, M_sun, sf</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>neutron_core_mass <span class="op">=</span> <span class="fl">1.9</span> <span class="op">*</span> M_sun</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>density_nuclear <span class="op">=</span> <span class="fl">4.1e17</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>r_ns<span class="op">=</span>r_mass_density(neutron_core_mass,density_nuclear)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">With a nuclear density of"</span>,sf(density_nuclear),<span class="st">"kg/m^3, and a mass of"</span>,sf(neutron_core_mass),<span class="st">"kg, we find a radius of"</span>,<span class="bu">round</span>(r_ns<span class="op">/</span><span class="dv">1000</span>),<span class="st">"km.</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Note that this is larger than the maximum Schwarzschild radius, which was calculated above</span><span class="ch">\n</span><span class="st">to be less than 9 km, implying that the neutron star is, again, not small enough to collapse</span><span class="ch">\n</span><span class="st">to a black hole.</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+With a nuclear density of 4.1e+17 kg/m^3, and a mass of 3.8e+30 kg, we find a radius of 13 km.
+
+Note that this is larger than the maximum Schwarzschild radius, which was calculated above
+to be less than 9 km, implying that the neutron star is, again, not small enough to collapse
+to a black hole.
+</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/M87_star.jpg" class="img-fluid figure-img"></p>
+<figcaption>M87*</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Problem 17</strong></p>
+<p>Above is an image of M87<em>. Its mass is estimated to be about 6.5 </em>billion* solar masses. Calculate its Schwarzschild radius and express your answer in terms of units you can understand intuitively.</p>
+</blockquote>
+<div id="e6e5fa72-3d99-4f33-8577-45fb84634ce5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> aa_tools.astroc <span class="im">import</span> AU, R_S</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>schwarzschild_radius_M87<span class="op">=</span>R_S(<span class="fl">6.5e9</span><span class="op">*</span>M_sun)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The Schwarzschild radius of M87* is"</span>,sf(schwarzschild_radius_M87<span class="op">/</span><span class="dv">1000</span>),<span class="st">"km, or about"</span>,<span class="bu">round</span>(schwarzschild_radius_M87<span class="op">/</span>AU),<span class="st">"AU.</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Note that the orbits of the major planets fit comfortably inside this black hole!</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+The Schwarzschild radius of M87* is 1.9e+10 km, or about 128 AU.
+
+Note that the orbits of the major planets fit comfortably inside this black hole!
+</code></pre>
+</div>
+</div>
+<p>Note that we can only take images of black holes that are large enough to make out with our telescopes. These are supermassive black holes at the centers of galaxies. Black holes formed by stellar collapse must have stellar masses. They are many orders of magnitude smaller than the supermassive black holes that we see in images.</p>
+<blockquote class="blockquote">
+<p><strong>Problem 18</strong></p>
+<p>Below is a chart of the evolution of stars. It summarizes all of the stages of star birth, evolution, and death that we have learned over three or so units.<br>
+a. For each step, give a brief description of what is happening with the star. Skip the steps we have not discussed yet.<br>
+b. List the steps that we have not covered yet.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/stellarCycle.jpg" class="img-fluid figure-img"></p>
+<figcaption>stellarCycle.jpg</figcaption>
+</figure>
+</div>
+<p>YOUR ANSWER HERE</p>
+<blockquote class="blockquote">
+<p><strong>Problem 19 (optional enrichment)</strong></p>
+<p>Read this <a href="https://what-if.xkcd.com/73/">xkcd</a></p>
+</blockquote>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
